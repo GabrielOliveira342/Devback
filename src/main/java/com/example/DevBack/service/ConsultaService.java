@@ -1,5 +1,6 @@
 package com.example.DevBack.service;
 
+import com.example.DevBack.exception.RegraNegocioException;
 import com.example.DevBack.model.Consulta;
 import com.example.DevBack.repository.ConsultaRepository;
 
@@ -12,29 +13,35 @@ public class ConsultaService {
 
     private ConsultaRepository consultaRepository;
 
-    public ConsultaService(ConsultaRepository consultaRepository){
+    public ConsultaService(ConsultaRepository consultaRepository) {
         this.consultaRepository = consultaRepository;
     }
 
-    public Consulta salvar(Consulta consulta){
+    public Consulta salvar(Consulta consulta) {
         return consultaRepository.save(consulta);
     }
 
-    public List<Consulta> todos(){
+    public List<Consulta> todos() {
         return consultaRepository.findAll();
     }
 
-    public Consulta porId(Long id){
-        return consultaRepository.findById(id).orElse(null);
+    public Consulta porId(Long id) {
+        return consultaRepository.findById(id)
+                .orElseThrow(() -> new RegraNegocioException("Consulta não encontrada com id: " + id));
     }
 
-    public Consulta atualizar(Long id, Consulta consulta){
+    public Consulta atualizar(Long id, Consulta consulta) {
+        if (!consultaRepository.existsById(id)) {
+            throw new RegraNegocioException("Consulta não encontrada com id: " + id);
+        }
         consulta.setId(id);
         return consultaRepository.save(consulta);
     }
 
-    public boolean excluir(Long id){
+    public void excluir(Long id) {
+        if (!consultaRepository.existsById(id)) {
+            throw new RegraNegocioException("Consulta não encontrada com id: " + id);
+        }
         consultaRepository.deleteById(id);
-        return true;
     }
 }

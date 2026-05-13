@@ -4,14 +4,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Receita {
 
     @Id
     private Long id;
+
+    @NotBlank(message = "Medicamento é obrigatório")
     private String medicamento;
+
+    @NotBlank(message = "Dosagem é obrigatória")
     private String dosagem;
+
     private int duracaoDias;
 
     @OneToOne
@@ -49,5 +55,4 @@ public class Receita {
     public void setDuracaoDias(int duracaoDias) {
         this.duracaoDias = duracaoDias;
     }
-
 }

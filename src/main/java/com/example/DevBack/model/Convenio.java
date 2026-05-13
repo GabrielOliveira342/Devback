@@ -5,18 +5,23 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Convenio {
-    
+
     @Id
     private Long id;
+
+    @NotBlank(message = "Nome é obrigatório")
     private String nome;
+
+    @NotBlank(message = "CNPJ é obrigatório")
     private String cnpj;
 
     @OneToMany(mappedBy = "convenio")
     private List<Consulta> consultas;
-    
+
     public Long getId() {
         return id;
     }
@@ -35,6 +40,4 @@ public class Convenio {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
-
 }

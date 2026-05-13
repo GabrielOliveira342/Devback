@@ -4,16 +4,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Prontuario {
-    
+
     @Id
     private Long id;
+
+    @NotBlank(message = "Tipo sanguíneo é obrigatório")
     private String tipoSanguineo;
+
     private String alergia;
     private String observacoes;
-    
+
     @OneToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
@@ -42,6 +46,4 @@ public class Prontuario {
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
-
-    
 }

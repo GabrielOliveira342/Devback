@@ -7,22 +7,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Paciente {
-    
+
     @Id
     private Long id;
+
+    @NotBlank(message = "Nome é obrigatório")
     private String nome;
+
+    @NotBlank(message = "CPF é obrigatório")
     private String cpf;
+
     private String telefone;
-    
+
     @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL)
     private Prontuario prontuario;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
-    
+
     public Long getId() {
         return id;
     }
@@ -47,5 +53,4 @@ public class Paciente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
 }
