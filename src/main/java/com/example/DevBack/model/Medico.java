@@ -5,7 +5,6 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Medico {
@@ -13,13 +12,10 @@ public class Medico {
     @Id
     private Long id;
 
-    @NotBlank(message = "Nome é obrigatório")
     private String nome;
 
-    @NotBlank(message = "Especialidade é obrigatória")
     private String especialidade;
 
-    @NotBlank(message = "CRM é obrigatório")
     private String crm;
 
     @OneToMany(mappedBy = "medico")

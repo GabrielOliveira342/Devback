@@ -3,8 +3,8 @@ package com.example.DevBack.controller;
 import com.example.DevBack.model.Medico;
 import com.example.DevBack.service.MedicoService;
 
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class MedicoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Medico salvar(@RequestBody @Valid Medico medico) {
+    public Medico salvar(@RequestBody @Validated Medico medico) {
         return service.salvar(medico);
     }
 
@@ -36,7 +36,7 @@ public class MedicoController {
     }
 
     @PutMapping("{id}")
-    public Medico atualizar(@PathVariable Long id, @RequestBody @Valid Medico medico) {
+    public Medico atualizar(@PathVariable Long id, @RequestBody @Validated Medico medico) {
         return service.atualizar(id, medico);
     }
 

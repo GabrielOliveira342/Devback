@@ -3,8 +3,8 @@ package com.example.DevBack.controller;
 import com.example.DevBack.model.Paciente;
 import com.example.DevBack.service.PacienteService;
 
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class PacienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Paciente salvar(@RequestBody @Valid Paciente paciente) {
+    public Paciente salvar(@RequestBody @Validated Paciente paciente) {
         return service.salvar(paciente);
     }
 
@@ -36,7 +36,7 @@ public class PacienteController {
     }
 
     @PutMapping("{id}")
-    public Paciente atualizar(@PathVariable Long id, @RequestBody @Valid Paciente paciente) {
+    public Paciente atualizar(@PathVariable Long id, @RequestBody @Validated Paciente paciente) {
         return service.atualizar(id, paciente);
     }
 

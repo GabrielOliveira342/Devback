@@ -3,8 +3,8 @@ package com.example.DevBack.controller;
 import com.example.DevBack.model.Prontuario;
 import com.example.DevBack.service.ProntuarioService;
 
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ProntuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Prontuario salvar(@RequestBody @Valid Prontuario prontuario) {
+    public Prontuario salvar(@RequestBody @Validated Prontuario prontuario) {
         return service.salvar(prontuario);
     }
 
@@ -36,7 +36,7 @@ public class ProntuarioController {
     }
 
     @PutMapping("{id}")
-    public Prontuario atualizar(@PathVariable Long id, @RequestBody @Valid Prontuario prontuario) {
+    public Prontuario atualizar(@PathVariable Long id, @RequestBody @Validated Prontuario prontuario) {
         return service.atualizar(id, prontuario);
     }
 

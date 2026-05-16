@@ -3,8 +3,9 @@ package com.example.DevBack.controller;
 import com.example.DevBack.model.Convenio;
 import com.example.DevBack.service.ConvenioService;
 
-import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ConvenioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Convenio salvar(@RequestBody @Valid Convenio convenio) {
+    public Convenio salvar(@RequestBody @Validated Convenio convenio) {
         return service.salvar(convenio);
     }
 
@@ -36,7 +37,7 @@ public class ConvenioController {
     }
 
     @PutMapping("{id}")
-    public Convenio atualizar(@PathVariable Long id, @RequestBody @Valid Convenio convenio) {
+    public Convenio atualizar(@PathVariable Long id, @RequestBody @Validated Convenio convenio) {
         return service.atualizar(id, convenio);
     }
 

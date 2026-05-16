@@ -3,8 +3,9 @@ package com.example.DevBack.controller;
 import com.example.DevBack.model.Consulta;
 import com.example.DevBack.service.ConsultaService;
 
-import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ConsultaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Consulta salvar(@RequestBody @Valid Consulta consulta) {
+    public Consulta salvar(@RequestBody @Validated Consulta consulta) {
         return service.salvar(consulta);
     }
 
@@ -36,7 +37,7 @@ public class ConsultaController {
     }
 
     @PutMapping("{id}")
-    public Consulta atualizar(@PathVariable Long id, @RequestBody @Valid Consulta consulta) {
+    public Consulta atualizar(@PathVariable Long id, @RequestBody @Validated Consulta consulta) {
         return service.atualizar(id, consulta);
     }
 

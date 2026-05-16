@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
+
 
 @Entity
 public class Prontuario {
@@ -12,7 +12,6 @@ public class Prontuario {
     @Id
     private Long id;
 
-    @NotBlank(message = "Tipo sanguíneo é obrigatório")
     private String tipoSanguineo;
 
     private String alergia;

@@ -3,8 +3,8 @@ package com.example.DevBack.controller;
 import com.example.DevBack.model.Receita;
 import com.example.DevBack.service.ReceitaService;
 
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ReceitaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Receita salvar(@RequestBody @Valid Receita receita) {
+    public Receita salvar(@RequestBody @Validated Receita receita) {
         return service.salvar(receita);
     }
 
@@ -36,7 +36,7 @@ public class ReceitaController {
     }
 
     @PutMapping("{id}")
-    public Receita atualizar(@PathVariable Long id, @RequestBody @Valid Receita receita) {
+    public Receita atualizar(@PathVariable Long id, @RequestBody @Validated Receita receita) {
         return service.atualizar(id, receita);
     }
 

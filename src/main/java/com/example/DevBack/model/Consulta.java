@@ -8,8 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
 
 @Entity
 public class Consulta {
@@ -17,10 +16,8 @@ public class Consulta {
     @Id
     private Long id;
 
-    @NotNull(message = "Data e hora são obrigatórias")
     private LocalDateTime dataHora;
 
-    @NotBlank(message = "Motivo é obrigatório")
     private String motivo;
 
     private double valor;
@@ -70,5 +67,21 @@ public class Consulta {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public Convenio getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(Convenio convenio) {
+        this.convenio = convenio;
     }
 }
